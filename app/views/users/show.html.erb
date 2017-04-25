@@ -8,6 +8,7 @@
           <%= @user.name %>
         </h3>
       </div>
+      
       <div class="panel-body">
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
@@ -15,9 +16,17 @@
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
-      <li><a href="#">Tasklist</a></li>
-      <li><a href="#">Followings</a></li>
-      <li><a href="#">Followers</a></li>
+      <li class="<%= 'active' if current_page?(user_path(@user)) %>">
+        <%= link_to user_path(@user) do %>
+        Tasklists <span class="badge">
+        <%= @count_kadaitasklists %></span>
+        <% end %>
+      </li>
+        <li><a href="#">Followings</a></li>
+        <li><a href="#">Followers</a></li>
     </ul>
+    
+    <%= render 'kadaitasklists/kadaitasklists', kadaitasklists: @kadaitasklists, user: @user %>
+    
   </div>
 </div>

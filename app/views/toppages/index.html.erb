@@ -1,15 +1,34 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: 
-    <%= current_user.name %>
-  </p>
+  <div class="row">
+    <aside class="col-md-4">
+      
+      <%= form_for(@kadaitasklist) do |f| %>
+      
+      <div class="form-group">
+        <p>タスク</p>
+        <%= f.text_area :content, class: 'form-control', rows: 2 %>
+        <p></p>
+        <p>ステータス</p>
+        <%= f.text_area :status, class: 'form-control', rows: 1 %>
+      </div>
+      
+      <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+    
+    <% end %>
+    </aside>
+    
+    <div class="col-xs-8">
+      <%= render 'kadaitasklists/kadaitasklists', kadaitasklists: @kadaitasklists, user: @user %>
+    </div>
+  </div>
   
   <% else %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>Welcome to the Kadai-Tasklist</h1>
+      <h1>Welcome to the Kadai-Tasklists</h1>
       
       <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
-    
+
     </div>
   </div>
 <% end %>

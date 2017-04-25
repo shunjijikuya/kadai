@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   resources :users, only: [:index, :show, :new, :create]
   
+  resources :kadaitasklists, only: [:create, :destroy]
+  
 end
 
   #root to: 'tasks#index'

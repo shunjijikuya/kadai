@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424004532) do
+ActiveRecord::Schema.define(version: 20170424052854) do
+
+  create_table "kadaitasklists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content"
+    t.string   "status"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_kadaitasklists_on_user_id", using: :btree
+  end
+
+  create_table "kadi_tasklists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content"
+    t.string   "status"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_kadi_tasklists_on_user_id", using: :btree
+  end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
@@ -27,4 +45,6 @@ ActiveRecord::Schema.define(version: 20170424004532) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "kadaitasklists", "users"
+  add_foreign_key "kadi_tasklists", "users"
 end
